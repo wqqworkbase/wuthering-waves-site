@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wallpapers — Wuthering Waves Hub</title>
+  <meta name="description" content="Download high-quality Wuthering Waves wallpapers. Official art, fan creations, and AI-enhanced wallpapers.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌊</text></svg>">
+  <style>
+    /* Wallpaper grid specific styles */
+    .wallpaper-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .wallpaper-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 16/9;
+      cursor: pointer;
+      transition: var(--transition);
+      border: 1px solid rgba(0, 229, 255, 0.1);
+    }
+    .wallpaper-card:hover {
+      border-color: rgba(0, 229, 255, 0.4);
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 20px 60px rgba(0, 229, 255, 0.15);
+    }
+    .wallpaper-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .wallpaper-card:hover img {
+      transform: scale(1.08);
+    }
+    .wallpaper-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(10, 14, 26, 0.9) 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.25rem;
+    }
+    .wallpaper-card:hover .wallpaper-overlay {
+      opacity: 1;
+    }
+    .wallpaper-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #fff;
+      margin-bottom: 0.25rem;
+    }
+    .wallpaper-meta {
+      font-size: 0.7rem;
+      color: rgba(255, 255, 255, 0.6);
+      display: flex;
+      gap: 0.5rem;
+    }
+    .wallpaper-badge {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      font-size: 0.6rem;
+      font-weight: 700;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      z-index: 2;
+    }
+    .badge-official {
+      background: rgba(0, 229, 255, 0.2);
+      color: var(--cyan);
+      border: 1px solid rgba(0, 229, 255, 0.3);
+    }
+    .badge-fan {
+      background: rgba(168, 85, 247, 0.2);
+      color: #a855f7;
+      border: 1px solid rgba(168, 85, 247, 0.3);
+    }
+    .badge-ai {
+      background: rgba(234, 179, 8, 0.2);
+      color: #eab308;
+      border: 1px solid rgba(234, 179, 8, 0.3);
+    }
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 14, 26, 0.97);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+    .lightbox.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 12px;
+      box-shadow: 0 0 80px rgba(0, 229, 255, 0.2);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    .lightbox-info {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      color: #fff;
+    }
+    .lightbox-info h3 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.2rem;
+      margin-bottom: 0.3rem;
+    }
+    .lightbox-info p {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+    .download-btn {
+      position: absolute;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--cyan);
+      color: #000;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .download-btn:hover {
+      background: #fff;
+      box-shadow: 0 0 30px rgba(0, 229, 255, 0.4);
+    }
+    @media (max-width: 768px) {
+      .wallpaper-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">WUWA<span>.info</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="characters.html">Characters</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="guides.html">Guides</a></li>
+        <li><a href="wallpapers.html" class="active">Wallpapers</a></li>
+      </ul>
+      <button class="mobile-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="characters.html">Characters</a>
+    <a href="events.html">Events</a>
+    <a href="news.html">News</a>
+    <a href="guides.html">Guides</a>
+    <a href="wallpapers.html">Wallpapers</a>
+  </div>
+
+  <!-- Page -->
+  <div class="page">
+    <div class="container">
+
+      <!-- Header -->
+      <div class="page-header" data-reveal>
+        <p class="section-label">Visual Collection</p>
+        <h1 class="section-title" style="font-size:clamp(2rem,5vw,3.5rem);">Wallpapers</h1>
+        <p>High-quality Wuthering Waves wallpapers for desktop & mobile. Click to preview, right-click to save.</p>
+      </div>
+
+      <!-- Filter -->
+      <div class="filter-bar" data-reveal>
+        <button class="chip active" data-wp-filter="all">All</button>
+        <button class="chip" data-wp-filter="official">Official</button>
+        <button class="chip" data-wp-filter="fan">Fan Art</button>
+        <button class="chip" data-wp-filter="ai">AI Enhanced</button>
+        <button class="chip" data-wp-filter="character">Characters</button>
+        <button class="chip" data-wp-filter="scene">Scenes</button>
+      </div>
+
+      <!-- Wallpaper Grid -->
+      <div class="wallpaper-grid" data-reveal>
+
+        <!-- 01: Official Character Wallpaper -->
+        <div class="wallpaper-card" data-wp-type="official" data-wp-category="character" onclick="openLightbox(0)">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#0c1929,#1a0a2e,#0d1b3e);display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:0.3;">🖼️</div>
+          <span class="wallpaper-badge badge-official">Official</span>
+          <div class="wallpaper-overlay">
+            <p class="wallpaper-title">Rover Awakening</p>
+            <div class="wallpaper-meta"><span>1920×1080</span><span>·</span><span>Official Art</span></div>
+          </div>
+        </div>
+
+        <!-- 02: Jiyan -->
+        <div class="wallpaper-card" data-wp-type="official" data-wp-category="character" onclick="openLightbox(1)">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a0a0a,#2e0a1e,#1a1a0a);display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:0.3;">🖼️</div>
+          <span class="wallpaper-badge badge-official">Official</span>
+          <div class="wallpaper-overlay">
+            <p class="wallpaper-title">Jiyan — Guardian of Jinzhou</p>
+            <div class="wallpaper-meta"><span>1920×1080</span><span>·</span><span>Official Art</span></div>
+          </div>
+        </div>
+
+        <!-- 03: Yinyinlin -->
+        <div class="wallpaper-card" data-wp-type="official" data-wp-category="character" onclick="openLightbox(2)">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#0a1628,#1e0a2e,#0a1628);display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:0.3;">🖼️</div>
+          <span class="wallpaper-badge badge-official">Official</span>
+          <div class="wallpaper-overlay">
+            <p class="wallpaper-title">Yinyinlin — The Enigma</p>
+            <div class="wallpaper-meta"><span>1920×1080</span><span>·</span><span>Official Art</span></div>
+          </div>
+        </div>
+
+        <!-- 04: Scene — Jinzhou Night -->
+        <div class="wallpaper-card" data-wp-type="fan" data-wp-category="scene" onclick="openLightbox(3)">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#0a0e1a,#1a1a2e,#2e1a0a);display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:0.3;">🖼️</div>
+          <span class="wallpaper-badge badge-fan">Fan Art</span>
+          <div class="wallpaper-overlay">
+            <p class="wallpaper-title">Jinzhou at Night</p>
+            <div class="wallpaper-meta"><span>3840×2160</span><span>·</span><span>Fan Screenshot</span></div>
+          </div>
+        </div>
+
+        <!-- 05: Caligiri -->
+        <div class="wallpaper-card" data-wp-type="official" data-wp-category="character" onclick="openLightbox(4)">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a0a2e,#2e0a1e,#1a0a2e);display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:0.3;">🖼️</div>
+          <span class="wallpaper-badge badge-official">Official</span>
+          <div class="wallpaper-overlay">
+            <p class="wallpaper-title">Caligiri — Fractured Reality</p>
+            <div class="wallpaper-meta"><span>1920×1080</span><span>·</span><span>Official Art</span></div>
+          </div>
+        </div>
+
+        <!-- 06: AI Enhanced — Daniya -->
+        <div class="wallpaper-card" data-wp-type="ai" data-wp-category="character" onclick="openLightbox(5)">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#0c1929,#1a0a2e,#0d1b3e);display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:0.3;">🖼️</div>
+          <span class="wallpaper-badge badge-ai">AI Enhanced</span>
+          <div class="wallpaper-overlay">
+            <p class="wallpaper-title">Daniya — Storm Caller (AI Mix)</p>
+            <div class="wallpaper-meta"><span>3840×2160</span><span>·</span><span>AI Enhanced</span></div>
+          </div>
+        </div>
+
+        <!-- 07: Scene — Mt. Firmament -->
+        <div class="wallpaper-card" data-wp-type="fan" data-wp-category="scene" onclick="openLightbox(6)">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#0a1628,#162840,#0a1628);display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:0.3;">🖼️</div>
+          <span class="wallpaper-badge badge-fan">Fan Art</span>
+          <div class="wallpaper-overlay">
+            <p class="wallpaper-title">Mt. Firmament Sunrise</p>
+            <div class="wallpaper-meta"><span>3840×2160</span><span>·</span><span>Fan Screenshot</span></div>
+          </div>
+        </div>
+
+        <!-- 08: Feixue -->
+        <div class="wallpaper-card" data-wp-type="official" data-wp-category="character" onclick="openLightbox(7)">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#0a1a1a,#1a2e2e,#0a1a1a);display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:0.3;">🖼️</div>
+          <span class="wallpaper-badge badge-official">Official</span>
+          <div class="wallpaper-overlay">
+            <p class="wallpaper-title">Feixue — Icy Resolve</p>
+            <div class="wallpaper-meta"><span>1920×1080</span><span>·</span><span>Official Art</span></div>
+          </div>
+        </div>
+
+        <!-- 09: Scene — Dark Tides -->
+        <div class="wallpaper-card" data-wp-type="ai" data-wp-category="scene" onclick="openLightbox(8)">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#0a0a0a,#1a0a1a,#0a0a0a);display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:0.3;">🖼️</div>
+          <span class="wallpaper-badge badge-ai">AI Enhanced</span>
+          <div class="wallpaper-overlay">
+            <p class="wallpaper-title">Dark Tides — Concept Scene</p>
+            <div class="wallpaper-meta"><span>3840×2160</span><span>·</span><span>AI Generated</span></div>
+          </div>
+        </div>
+
+        <!-- 10: Rinae -->
+        <div class="wallpaper-card" data-wp-type="fan" data-wp-category="character" onclick="openLightbox(9)">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a0a1a,#2e0a2e,#1a0a1a);display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:0.3;">🖼️</div>
+          <span class="wallpaper-badge badge-fan">Fan Art</span>
+          <div class="wallpaper-overlay">
+            <p class="wallpaper-title">Rinae — Havoc Embrace</p>
+            <div class="wallpaper-meta"><span>1920×1080</span><span>·</span><span>Fan Art</span></div>
+          </div>
+        </div>
+
+        <!-- 11: Official Version 1.5 -->
+        <div class="wallpaper-card" data-wp-type="official" data-wp-category="scene" onclick="openLightbox(10)">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#0c1929,#1a0a2e,#2e1a0a);display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:0.3;">🖼️</div>
+          <span class="wallpaper-badge badge-official">Official</span>
+          <div class="wallpaper-overlay">
+            <p class="wallpaper-title">Version 1.5 — Eclipse</p>
+            <div class="wallpaper-meta"><span>1920×1080</span><span>·</span><span>Official Art</span></div>
+          </div>
+        </div>
+
+        <!-- 12: Cigleri -->
+        <div class="wallpaper-card" data-wp-type="official" data-wp-category="character" onclick="openLightbox(11)">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#0a1929,#1a2e0a,#0a1929);display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:0.3;">🖼️</div>
+          <span class="wallpaper-badge badge-official">Official</span>
+          <div class="wallpaper-overlay">
+            <p class="wallpaper-title">Cigleri — Wind's Edge</p>
+            <div class="wallpaper-meta"><span>1920×1080</span><span>·</span><span>Official Art</span></div>
+          </div>
+        </div>
+
+        <!-- 13: Scene — Roy Icefield -->
+        <div class="wallpaper-card" data-wp-type="ai" data-wp-category="scene" onclick="openLightbox(12)">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#0a1628,#162840,#0a2040);display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:0.3;">🖼️</div>
+          <span class="wallpaper-badge badge-ai">AI Enhanced</span>
+          <div class="wallpaper-overlay">
+            <p class="wallpaper-title">Roy Icefield Expedition</p>
+            <div class="wallpaper-meta"><span>3840×2160</span><span>·</span><span>AI Enhanced</span></div>
+          </div>
+        </div>
+
+        <!-- 14: Lu Hesh -->
+        <div class="wallpaper-card" data-wp-type="fan" data-wp-category="character" onclick="openLightbox(13)">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a0a0a,#2e1a0a,#1a0a0a);display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:0.3;">🖼️</div>
+          <span class="wallpaper-badge badge-fan">Fan Art</span>
+          <div class="wallpaper-overlay">
+            <p class="wallpaper-title">Lu Hesh — Fist of Fire</p>
+            <div class="wallpaper-meta"><span>1920×1080</span><span>·</span><span>Fan Art</span></div>
+          </div>
+        </div>
+
+        <!-- 15: Scene — Penitent's End -->
+        <div class="wallpaper-card" data-wp-type="official" data-wp-category="scene" onclick="openLightbox(14)">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#0a0a1a,#1a0a2e,#2e0a1a);display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:0.3;">🖼️</div>
+          <span class="wallpaper-badge badge-official">Official</span>
+          <div class="wallpaper-overlay">
+            <p class="wallpaper-title">Penitent's End</p>
+            <div class="wallpaper-meta"><span>1920×1080</span><span>·</span><span>Official Art</span></div>
+          </div>
+        </div>
+
+        <!-- 16: Aimesi -->
+        <div class="wallpaper-card" data-wp-type="ai" data-wp-category="character" onclick="openLightbox(15)">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a1929,#2e0a1e,#1a1929);display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:0.3;">🖼️</div>
+          <span class="wallpaper-badge badge-ai">AI Enhanced</span>
+          <div class="wallpaper-overlay">
+            <p class="wallpaper-title">Aimesi — Rectifier's Grace</p>
+            <div class="wallpaper-meta"><span>3840×2160</span><span>·</span><span>AI Enhanced</span></div>
+          </div>
+        </div>
+
+        <!-- 17: Scene — Tortoise Island -->
+        <div class="wallpaper-card" data-wp-type="fan" data-wp-category="scene" onclick="openLightbox(16)">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#0a1929,#0a2840,#0a1929);display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:0.3;">🖼️</div>
+          <span class="wallpaper-badge badge-fan">Fan Art</span>
+          <div class="wallpaper-overlay">
+            <p class="wallpaper-title">Tortoise Island — Serene Waters</p>
+            <div class="wallpaper-meta"><span>3840×2160</span><span>·</span><span>Fan Screenshot</span></div>
+          </div>
+        </div>
+
+        <!-- 18: Gavelina -->
+        <div class="wallpaper-card" data-wp-type="official" data-wp-category="character" onclick="openLightbox(17)">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a0a0a,#2e1a0a,#1a0a0a);display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:0.3;">🖼️</div>
+          <span class="wallpaper-badge badge-official">Official</span>
+          <div class="wallpaper-overlay">
+            <p class="wallpaper-title">Gavelina — Blade of Jinzhou</p>
+            <div class="wallpaper-meta"><span>1920×1080</span><span>·</span><span>Official Art</span></div>
+          </div>
+        </div>
+
+        <!-- 19: Scene — Starry Sky -->
+        <div class="wallpaper-card" data-wp-type="ai" data-wp-category="scene" onclick="openLightbox(18)">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#0a0a1a,#0a1a2e,#1a0a2e);display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:0.3;">🖼️</div>
+          <span class="wallpaper-badge badge-ai">AI Enhanced</span>
+          <div class="wallpaper-overlay">
+            <p class="wallpaper-title">Starry Sky Over Jinzhou</p>
+            <div class="wallpaper-meta"><span>3840×2160</span><span>·</span><span>AI Generated</span></div>
+          </div>
+        </div>
+
+        <!-- 20: Yunuo -->
+        <div class="wallpaper-card" data-wp-type="official" data-wp-category="character" onclick="openLightbox(19)">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#0a1929,#1a2e0a,#0a1929);display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:0.3;">🖼️</div>
+          <span class="wallpaper-badge badge-official">Official</span>
+          <div class="wallpaper-overlay">
+            <p class="wallpaper-title">Yunuo — Aero Resonance</p>
+            <div class="wallpaper-meta"><span>1920×1080</span><span>·</span><span>Official Art</span></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Note -->
+      <div class="glass" style="margin-top:3rem;padding:1.5rem;text-align:center;" data-reveal>
+        <p style="font-size:0.82rem;color:var(--text-dim);line-height:1.6;">
+          <strong style="color:var(--cyan);">Note:</strong> These are placeholder wallpapers. To add real images, place your wallpaper files in the <code>assets/wallpapers/</code> folder and update the <code>data-wp-img</code> attribute in each card. See <code>README.md</code> for detailed instructions.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-info">
+      <h3 id="lightbox-title"></h3>
+      <p id="lightbox-meta"></p>
+    </div>
+    <a class="download-btn" id="lightbox-download" download>
+      ⬇ Download
+    </a>
+  </div>
+
+  <footer class="footer">
+    <p>An unofficial fan project. Not affiliated with <a href="#">Kuro Games</a>.</p>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+  <script>
+    // Wallpaper data (replace with real image paths)
+    const WALLPAPERS = [
+      { src: 'assets/wallpapers/01-rover-awakening.jpg', title: 'Rover Awakening', meta: '1920×1080 · Official Art' },
+      { src: 'assets/wallpapers/02-jiyan.jpg', title: 'Jiyan — Guardian of Jinzhou', meta: '1920×1080 · Official Art' },
+      { src: 'assets/wallpapers/03-yinyinlin.jpg', title: 'Yinyinlin — The Enigma', meta: '1920×1080 · Official Art' },
+      { src: 'assets/wallpapers/04-jinzhou-night.jpg', title: 'Jinzhou at Night', meta: '3840×2160 · Fan Screenshot' },
+      { src: 'assets/wallpapers/05-caligiri.jpg', title: 'Caligiri — Fractured Reality', meta: '1920×1080 · Official Art' },
+      { src: 'assets/wallpapers/06-daniya-ai.jpg', title: 'Daniya — Storm Caller (AI Mix)', meta: '3840×2160 · AI Enhanced' },
+      { src: 'assets/wallpapers/07-mt-firmament.jpg', title: 'Mt. Firmament Sunrise', meta: '3840×2160 · Fan Screenshot' },
+      { src: 'assets/wallpapers/08-feixue.jpg', title: 'Feixue — Icy Resolve', meta: '1920×1080 · Official Art' },
+      { src: 'assets/wallpapers/09-dark-tides.jpg', title: 'Dark Tides — Concept Scene', meta: '3840×2160 · AI Generated' },
+      { src: 'assets/wallpapers/10-rinae.jpg', title: 'Rinae — Havoc Embrace', meta: '1920×1080 · Fan Art' },
+      { src: 'assets/wallpapers/11-version-1.5.jpg', title: 'Version 1.5 — Eclipse', meta: '1920×1080 · Official Art' },
+      { src: 'assets/wallpapers/12-cigleri.jpg', title: 'Cigleri — Wind\'s Edge', meta: '1920×1080 · Official Art' },
+      { src: 'assets/wallpapers/13-roy-icefield.jpg', title: 'Roy Icefield Expedition', meta: '3840×2160 · AI Enhanced' },
+      { src: 'assets/wallpapers/14-lu-hesh.jpg', title: 'Lu Hesh — Fist of Fire', meta: '1920×1080 · Fan Art' },
+      { src: 'assets/wallpapers/15-penitents-end.jpg', title: 'Penitent\'s End', meta: '1920×1080 · Official Art' },
+      { src: 'assets/wallpapers/16-aimesi.jpg', title: 'Aimesi — Rectifier\'s Grace', meta: '3840×2160 · AI Enhanced' },
+      { src: 'assets/wallpapers/17-tortoise-island.jpg', title: 'Tortoise Island — Serene Waters', meta: '3840×2160 · Fan Screenshot' },
+      { src: 'assets/wallpapers/18-gavelina.jpg', title: 'Gavelina — Blade of Jinzhou', meta: '1920×1080 · Official Art' },
+      { src: 'assets/wallpapers/19-starry-sky.jpg', title: 'Starry Sky Over Jinzhou', meta: '3840×2160 · AI Generated' },
+      { src: 'assets/wallpapers/20-yunuo.jpg', title: 'Yunuo — Aero Resonance', meta: '1920×1080 · Official Art' },
+    ];
+
+    function openLightbox(index) {
+      const wp = WALLPAPERS[index];
+      if (!wp) return;
+      const lb = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      const title = document.getElementById('lightbox-title');
+      const meta = document.getElementById('lightbox-meta');
+      const dl = document.getElementById('lightbox-download');
+
+      img.src = wp.src;
+      title.textContent = wp.title;
+      meta.textContent = wp.meta;
+      dl.href = wp.src;
+      lb.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Close on backdrop click
+    document.getElementById('lightbox').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) closeLightbox();
+    });
+
+    // ESC to close
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Wallpaper filter
+    document.querySelectorAll('[data-wp-filter]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.wpFilter;
+        document.querySelectorAll('[data-wp-filter]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        document.querySelectorAll('.wallpaper-card').forEach(card => {
+          const show = target === 'all' ||
+            card.dataset.wpType === target ||
+            card.dataset.wpCategory === target;
+          card.style.display = show ? '' : 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
