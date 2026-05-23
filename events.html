@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events &amp; Banners — Wuthering Waves Hub</title>
+  <meta name="description" content="Real-time countdown for all active and upcoming Wuthering Waves events and banners.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌊</text></svg>">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">WUWA<span>.info</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="characters.html">Characters</a></li>
+        <li><a href="events.html" class="active">Events</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="guides.html">Guides</a></li>
+      </ul>
+      <button class="mobile-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-nav">
+    <a href="index.html">Home</a><a href="characters.html">Characters</a>
+    <a href="events.html">Events</a><a href="news.html">News</a><a href="guides.html">Guides</a>
+  </div>
+
+  <div class="page">
+    <div class="container">
+
+      <!-- Header -->
+      <div class="page-header" data-reveal>
+        <p class="section-label">Live Tracker</p>
+        <h1 class="section-title" style="font-size:clamp(2rem,5vw,3.5rem);">Events &amp; Banners</h1>
+        <p>Real-time countdown for all ongoing and upcoming events. Auto-updated daily from official sources.</p>
+      </div>
+
+      <!-- Tab Switcher -->
+      <div class="tab-switcher" data-reveal>
+        <button class="tab-btn active" data-event-tab="active">
+          Active Events
+          <span class="tab-count" id="active-count">9</span>
+        </button>
+        <button class="tab-btn" data-event-tab="upcoming">
+          Coming Soon
+          <span class="tab-count" id="upcoming-count">2</span>
+        </button>
+      </div>
+
+      <!-- Active Events -->
+      <div id="event-list">
+
+        <!-- Ocean Tidal Gift -->
+        <div class="event-card glass-card" data-event-status="active" data-reveal>
+          <div style="flex:1;">
+            <div style="display:flex;gap:0.4rem;margin-bottom:0.5rem;flex-wrap:wrap;">
+              <span class="event-badge active"><span class="status-dot online"></span>Active</span>
+              <span class="event-type-badge" style="background:rgba(0,229,255,0.1);color:var(--cyan);border:1px solid rgba(0,229,255,0.2);">Login Reward</span>
+            </div>
+            <h3 style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.1rem;color:#fff;">Ocean Tidal Gift</h3>
+            <p style="font-size:0.8rem;color:var(--text-dim);margin-top:0.25rem;line-height:1.5;">Login daily during the event period to claim rewards including Premium Resonance Seeds, Crystal Passes, and exclusive items.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.75rem;">
+              <span style="font-size:0.62rem;padding:0.15rem 0.5rem;background:rgba(255,255,255,0.05);border-radius:4px;color:#aaa;">Premium Resonance Seed ×10</span>
+              <span style="font-size:0.62rem;padding:0.15rem 0.5rem;background:rgba(255,255,255,0.05);border-radius:4px;color:#aaa;">Crystal Pass ×5</span>
+              <span style="font-size:0.62rem;padding:0.15rem 0.5rem;background:rgba(255,255,255,0.05);border-radius:4px;color:#aaa;">Echo EXP Material ×50</span>
+            </div>
+          </div>
+          <div data-countdown="2026-06-15T03:59:00Z" style="text-align:right;min-width:110px;">
+            <p class="countdown-timer">—</p>
+            <p class="countdown-label">Ends in</p>
+          </div>
+        </div>
+
+        <!-- Grand Festival -->
+        <div class="event-card glass-card" data-event-status="active" data-reveal data-reveal-delay="50">
+          <div style="flex:1;">
+            <div style="display:flex;gap:0.4rem;margin-bottom:0.5rem;flex-wrap:wrap;">
+              <span class="event-badge active"><span class="status-dot online"></span>Active</span>
+              <span class="event-type-badge" style="background:rgba(234,179,8,0.1);color:#eab308;border:1px solid rgba(234,179,8,0.2);">Challenge</span>
+            </div>
+            <h3 style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.1rem;color:#fff;">Grand Festival Gift</h3>
+            <p style="font-size:0.8rem;color:var(--text-dim);margin-top:0.25rem;line-height:1.5;">Complete in-game challenges across all game modes. Participation earns bonus points toward exclusive festival rewards.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.75rem;">
+              <span style="font-size:0.62rem;padding:0.15rem 0.5rem;background:rgba(255,255,255,0.05);border-radius:4px;color:#aaa;">Exclusive Badge</span>
+              <span style="font-size:0.62rem;padding:0.15rem 0.5rem;background:rgba(255,255,255,0.05);border-radius:4px;color:#aaa;">Crystal Pass ×10</span>
+              <span style="font-size:0.62rem;padding:0.15rem 0.5rem;background:rgba(255,255,255,0.05);border-radius:4px;color:#aaa;">Advanced Resonance Material ×20</span>
+            </div>
+          </div>
+          <div data-countdown="2026-06-07T11:59:00Z" style="text-align:right;min-width:110px;">
+            <p class="countdown-timer">—</p>
+            <p class="countdown-label">Ends in</p>
+          </div>
+        </div>
+
+        <!-- Star Cluster Gift -->
+        <div class="event-card glass-card" data-event-status="active" data-reveal data-reveal-delay="100">
+          <div style="flex:1;">
+            <div style="display:flex;gap:0.4rem;margin-bottom:0.5rem;flex-wrap:wrap;">
+              <span class="event-badge active"><span class="status-dot online"></span>Active</span>
+              <span class="event-type-badge" style="background:rgba(168,85,247,0.1);color:#a855f7;border:1px solid rgba(168,85,247,0.2);">Collection</span>
+            </div>
+            <h3 style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.1rem;color:#fff;">Star Cluster Gift</h3>
+            <p style="font-size:0.8rem;color:var(--text-dim);margin-top:0.25rem;line-height:1.5;">Gather Star Cluster Fragments from various activities and exchange them for rare rewards including weapon prototypes.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.75rem;">
+              <span style="font-size:0.62rem;padding:0.15rem 0.5rem;background:rgba(255,255,255,0.05);border-radius:4px;color:#FFD700;">5★ Weapon Prototype</span>
+              <span style="font-size:0.62rem;padding:0.15rem 0.5rem;background:rgba(255,255,255,0.05);border-radius:4px;color:#aaa;">Echo Set Material</span>
+            </div>
+          </div>
+          <div data-countdown="2026-06-07T03:59:00Z" style="text-align:right;min-width:110px;">
+            <p class="countdown-timer">—</p>
+            <p class="countdown-label">Ends in</p>
+          </div>
+        </div>
+
+        <!-- Second Sora Crossover -->
+        <div class="event-card glass-card" data-event-status="active" data-reveal data-reveal-delay="150">
+          <div style="flex:1;">
+            <div style="display:flex;gap:0.4rem;margin-bottom:0.5rem;flex-wrap:wrap;">
+              <span class="event-badge active"><span class="status-dot online"></span>Active</span>
+              <span class="event-type-badge" style="background:rgba(236,72,153,0.1);color:#ec4899;border:1px solid rgba(236,72,153,0.2);">Crossover</span>
+            </div>
+            <h3 style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.1rem;color:#fff;">Second Sora Crossover — Season 2</h3>
+            <p style="font-size:0.8rem;color:var(--text-dim);margin-top:0.25rem;line-height:1.5;">Special collaboration featuring crossover cosmetics, themed quests, and exclusive rewards from the Second Sora universe.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.75rem;">
+              <span style="font-size:0.62rem;padding:0.15rem 0.5rem;background:rgba(255,255,255,0.05);border-radius:4px;color:#aaa;">Crossover Outfit ×1</span>
+              <span style="font-size:0.62rem;padding:0.15rem 0.5rem;background:rgba(255,255,255,0.05);border-radius:4px;color:#aaa;">Collaboration Title</span>
+              <span style="font-size:0.62rem;padding:0.15rem 0.5rem;background:rgba(255,255,255,0.05);border-radius:4px;color:#aaa;">Crystal Pass ×15</span>
+            </div>
+          </div>
+          <div data-countdown="2026-06-07T11:59:00Z" style="text-align:right;min-width:110px;">
+            <p class="countdown-timer">—</p>
+            <p class="countdown-label">Ends in</p>
+          </div>
+        </div>
+
+        <!-- Fantasy Abyss -->
+        <div class="event-card glass-card" data-event-status="active" data-reveal data-reveal-delay="200">
+          <div style="flex:1;">
+            <div style="display:flex;gap:0.4rem;margin-bottom:0.5rem;flex-wrap:wrap;">
+              <span class="event-badge active"><span class="status-dot online"></span>Active</span>
+              <span class="event-type-badge" style="background:rgba(234,179,8,0.1);color:#eab308;border:1px solid rgba(234,179,8,0.2);">Challenge</span>
+            </div>
+            <h3 style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.1rem;color:#fff;">Fantasy Abyss — Celestial Dream</h3>
+            <p style="font-size:0.8rem;color:var(--text-dim);margin-top:0.25rem;line-height:1.5;">New fantasy abyss floors with enhanced difficulty. Clear all floors for exclusive echo sets and rare enhancement materials.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.75rem;">
+              <span style="font-size:0.62rem;padding:0.15rem 0.5rem;background:rgba(255,255,255,0.05);border-radius:4px;color:#FFD700;">Fantasy Echo Set ×1</span>
+              <span style="font-size:0.62rem;padding:0.15rem 0.5rem;background:rgba(255,255,255,0.05);border-radius:4px;color:#aaa;">Rare Enhancement Material ×30</span>
+            </div>
+          </div>
+          <div data-countdown="2026-06-07T03:59:00Z" style="text-align:right;min-width:110px;">
+            <p class="countdown-timer">—</p>
+            <p class="countdown-label">Ends in</p>
+          </div>
+        </div>
+
+        <!-- UPCOMING EVENTS (hidden by default, shown on tab switch) -->
+        <div class="event-card glass-card" data-event-status="upcoming" style="display:none;">
+          <div style="flex:1;">
+            <div style="display:flex;gap:0.4rem;margin-bottom:0.5rem;flex-wrap:wrap;">
+              <span class="event-badge upcoming"><span class="status-dot" style="background:#eab308;animation:none;"></span>Upcoming</span>
+              <span class="event-type-badge" style="background:rgba(52,211,153,0.1);color:#34d399;border:1px solid rgba(52,211,153,0.2);">Exploration</span>
+            </div>
+            <h3 style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.1rem;color:#fff;">Roy Icefield Expedition</h3>
+            <p style="font-size:0.8rem;color:var(--text-dim);margin-top:0.25rem;line-height:1.5;">Explore the newly revealed Roy Icefield region. Discover new characters and collectibles.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.75rem;">
+              <span style="font-size:0.62rem;padding:0.15rem 0.5rem;background:rgba(255,255,255,0.05);border-radius:4px;color:#aaa;">New Character Fragments</span>
+              <span style="font-size:0.62rem;padding:0.15rem 0.5rem;background:rgba(255,255,255,0.05);border-radius:4px;color:#aaa;">Icefield Exploration Badge</span>
+            </div>
+          </div>
+          <div data-countdown data-start="2026-05-25T03:00:00Z" style="text-align:right;min-width:110px;">
+            <p class="countdown-timer">—</p>
+            <p class="countdown-label">Starts in</p>
+          </div>
+        </div>
+
+        <div class="event-card glass-card" data-event-status="upcoming" style="display:none;">
+          <div style="flex:1;">
+            <div style="display:flex;gap:0.4rem;margin-bottom:0.5rem;flex-wrap:wrap;">
+              <span class="event-badge upcoming"><span class="status-dot" style="background:#eab308;animation:none;"></span>Upcoming</span>
+              <span class="event-type-badge" style="background:rgba(234,179,8,0.1);color:#eab308;border:1px solid rgba(234,179,8,0.2);">Challenge</span>
+            </div>
+            <h3 style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.1rem;color:#fff;">Sonic String Cleansing</h3>
+            <p style="font-size:0.8rem;color:var(--text-dim);margin-top:0.25rem;line-height:1.5;">Challenge event featuring sonic-based puzzles and combat encounters.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.75rem;">
+              <span style="font-size:0.62rem;padding:0.15rem 0.5rem;background:rgba(255,255,255,0.05);border-radius:4px;color:#aaa;">Musical Achievement</span>
+              <span style="font-size:0.62rem;padding:0.15rem 0.5rem;background:rgba(255,255,255,0.05);border-radius:4px;color:#aaa;">Rare Enhancement Material</span>
+            </div>
+          </div>
+          <div data-countdown data-start="2026-05-31T03:00:00Z" style="text-align:right;min-width:110px;">
+            <p class="countdown-timer">—</p>
+            <p class="countdown-label">Starts in</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Last updated -->
+      <p style="text-align:center;font-size:0.72rem;color:var(--text-dim);margin-top:3rem;" data-reveal>
+        Last synced: May 23, 2026 · Data from official Wuthering Waves channels
+      </p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>An unofficial fan project. Not affiliated with <a href="#">Kuro Games</a>.</p>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

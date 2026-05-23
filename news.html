@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News &amp; Guides — Wuthering Waves Hub</title>
+  <meta name="description" content="Latest Wuthering Waves news, patch notes, announcements, and community guides.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌊</text></svg>">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">WUWA<span>.info</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="characters.html">Characters</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="news.html" class="active">News</a></li>
+        <li><a href="guides.html">Guides</a></li>
+      </ul>
+      <button class="mobile-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-nav">
+    <a href="index.html">Home</a><a href="characters.html">Characters</a>
+    <a href="events.html">Events</a><a href="news.html">News</a><a href="guides.html">Guides</a>
+  </div>
+
+  <div class="page">
+    <div class="container">
+
+      <div class="page-header" data-reveal>
+        <p class="section-label">Stay Updated</p>
+        <h1 class="section-title" style="font-size:clamp(2rem,5vw,3.5rem);">News &amp; Guides</h1>
+      </div>
+
+      <!-- Category Filters -->
+      <div class="filter-bar" data-reveal>
+        <button class="chip active" data-category-chip="all">All</button>
+        <button class="chip" data-category-chip="UPDATE">Update</button>
+        <button class="chip" data-category-chip="BANNER">Banner</button>
+        <button class="chip" data-category-chip="EVENT">Event</button>
+        <button class="chip" data-category-chip="ANNOUNCEMENT">Announcement</button>
+        <button class="chip" data-category-chip="GUIDE">Guide</button>
+        <button class="chip" data-category-chip="LORE">Lore</button>
+      </div>
+
+      <!-- Featured -->
+      <a href="#" class="news-card featured glass-card" style="display:flex;gap:1.5rem;margin-bottom:1.5rem;flex-wrap:wrap;" data-news-category="UPDATE" data-reveal>
+        <div style="flex:1;min-width:220px;">
+          <span class="category-tag" style="background:rgba(59,130,246,0.15);color:#60a5fa;border-color:rgba(59,130,246,0.3);">UPDATE</span>
+          <h2 style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.3rem;color:#fff;margin-top:0.5rem;">Version 1.5 'Eclipse' Update — Full Patch Notes</h2>
+          <p style="font-size:0.82rem;color:var(--text-dim);margin-top:0.5rem;line-height:1.6;">New Resonator Daniya, 5-star weapon banner, Roy Icefield exploration zone, and major combat system improvements. Full details inside.</p>
+          <div style="display:flex;gap:1rem;margin-top:0.75rem;font-size:0.72rem;color:var(--text-dim);">
+            <span>May 20, 2026</span><span>·</span><span>8 min read</span><span>·</span><span style="color:var(--cyan);">Official</span>
+          </div>
+        </div>
+        <div style="width:160px;height:110px;background:linear-gradient(135deg,rgba(59,130,246,0.2),rgba(0,229,255,0.1));border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:2.5rem;">📋</div>
+      </a>
+
+      <div style="display:grid;gap:0.75rem;">
+
+        <a href="#" class="news-card glass-card" data-news-category="BANNER" data-reveal>
+          <span class="category-tag" style="background:rgba(168,85,247,0.15);color:#c084fc;border-color:rgba(168,85,247,0.3);">BANNER</span>
+          <h3 style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;color:#fff;margin-top:0.4rem;">Solari Return Invitation — Limited Resonator Banner</h3>
+          <p style="font-size:0.8rem;color:var(--text-dim);margin-top:0.3rem;">The beloved Solari Resonator returns with exclusive bonuses for returning players. Bonus rates for first 10 pulls.</p>
+          <div style="display:flex;gap:1rem;margin-top:0.6rem;font-size:0.7rem;color:var(--text-dim);">
+            <span>May 15, 2026</span><span>·</span><span>3 min read</span><span>·</span><span style="color:var(--cyan);">Official</span>
+          </div>
+        </a>
+
+        <a href="#" class="news-card glass-card" data-news-category="EVENT" data-reveal>
+          <span class="category-tag" style="background:rgba(168,85,247,0.15);color:#ec4899;border-color:rgba(236,72,153,0.3);">CROSSOVER</span>
+          <h3 style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;color:#fff;margin-top:0.4rem;">Wuthering Waves × Second Sora Collaboration Announced</h3>
+          <p style="font-size:0.8rem;color:var(--text-dim);margin-top:0.3rem;">Limited collaboration cosmetics, exclusive quests, and special crossover rewards. Cross-game achievements available.</p>
+          <div style="display:flex;gap:1rem;margin-top:0.6rem;font-size:0.7rem;color:var(--text-dim);">
+            <span>May 8, 2026</span><span>·</span><span>4 min read</span><span>·</span><span style="color:var(--cyan);">Official</span>
+          </div>
+        </a>
+
+        <a href="#" class="news-card glass-card" data-news-category="ANNOUNCEMENT" data-reveal>
+          <span class="category-tag" style="background:rgba(234,179,8,0.15);color:#eab308;border-color:rgba(234,179,8,0.3);">ANNOUNCEMENT</span>
+          <h3 style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;color:#fff;margin-top:0.4rem;">Scheduled Maintenance — May 21, 2026</h3>
+          <p style="font-size:0.8rem;color:var(--text-dim);margin-top:0.3rem;">Server maintenance for Version 1.4 hotfix. Estimated downtime: 3 hours. All daily rewards extended by 24h.</p>
+          <div style="display:flex;gap:1rem;margin-top:0.6rem;font-size:0.7rem;color:var(--text-dim);">
+            <span>May 19, 2026</span><span>·</span><span>1 min read</span><span>·</span><span style="color:var(--cyan);">Official</span>
+          </div>
+        </a>
+
+        <a href="#" class="news-card glass-card" data-news-category="GUIDE" data-reveal>
+          <span class="category-tag" style="background:rgba(234,88,12,0.15);color:#f97316;border-color:rgba(234,88,12,0.3);">GUIDE</span>
+          <h3 style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;color:#fff;margin-top:0.4rem;">Feixue Complete Build Guide — Best Echo Sets &amp; Weapons</h3>
+          <p style="font-size:0.8rem;color:var(--text-dim);margin-top:0.3rem;">Maximize your Feixue with optimal echo configurations, weapon choices, and team compositions for both PvE and PvP.</p>
+          <div style="display:flex;gap:1rem;margin-top:0.6rem;font-size:0.7rem;color:var(--text-dim);">
+            <span>May 12, 2026</span><span>·</span><span>12 min read</span><span>·</span><span>Community</span>
+          </div>
+        </a>
+
+        <a href="#" class="news-card glass-card" data-news-category="GUIDE" data-reveal>
+          <span class="category-tag" style="background:rgba(234,88,12,0.15);color:#f97316;border-color:rgba(234,88,12,0.3);">GUIDE</span>
+          <h3 style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;color:#fff;margin-top:0.4rem;">Complete Beginner's Guide — From Zero to 40</h3>
+          <p style="font-size:0.8rem;color:var(--text-dim);margin-top:0.3rem;">Everything new players need: resource prioritization, character investment, and daily routine optimization.</p>
+          <div style="display:flex;gap:1rem;margin-top:0.6rem;font-size:0.7rem;color:var(--text-dim);">
+            <span>May 6, 2026</span><span>·</span><span>15 min read</span><span>·</span><span>Community</span>
+          </div>
+        </a>
+
+        <a href="#" class="news-card glass-card" data-news-category="LORE" data-reveal>
+          <span class="category-tag" style="background:rgba(236,72,153,0.15);color:#ec4899;border-color:rgba(236,72,153,0.3);">LORE</span>
+          <h3 style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;color:#fff;margin-top:0.4rem;">Lore Deep Dive: The Truth Behind Jinzhou's Founding</h3>
+          <p style="font-size:0.8rem;color:var(--text-dim);margin-top:0.3rem;">A comprehensive analysis of the historical records that shaped modern Jinzhou and its relationship with the Regulators.</p>
+          <div style="display:flex;gap:1rem;margin-top:0.6rem;font-size:0.7rem;color:var(--text-dim);">
+            <span>May 4, 2026</span><span>·</span><span>10 min read</span><span>·</span><span>Community</span>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>An unofficial fan project. <a href="#">Kuro Games</a>.</p>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

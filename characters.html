@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Character Codex — Wuthering Waves Hub</title>
+  <meta name="description" content="Browse all Wuthering Waves Resonators. Filter by element, weapon type, and rarity.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌊</text></svg>">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">WUWA<span>.info</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="characters.html" class="active">Characters</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="guides.html">Guides</a></li>
+      </ul>
+      <button class="mobile-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="characters.html">Characters</a>
+    <a href="events.html">Events</a>
+    <a href="news.html">News</a>
+    <a href="guides.html">Guides</a>
+  </div>
+
+  <!-- Page -->
+  <div class="page">
+    <div class="container">
+
+      <!-- Header -->
+      <div class="page-header" data-reveal>
+        <p class="section-label">Resonator Index</p>
+        <h1 class="section-title" style="font-size:clamp(2rem,5vw,3.5rem);">Character Codex</h1>
+        <p>Filter by element, weapon type, and rarity. Press <kbd style="background:rgba(255,255,255,0.1);padding:0.1rem 0.4rem;border-radius:4px;font-size:0.8em;">⌘K</kbd> to search.</p>
+      </div>
+
+      <!-- Filters -->
+      <div class="glass" style="padding:1rem;margin-bottom:1.5rem;" data-reveal>
+        <div style="display:flex;flex-wrap:wrap;gap:0.4rem;align-items:center;justify-content:center;">
+          <span style="font-size:0.7rem;color:var(--text-dim);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-right:0.5rem;">Element</span>
+          <button class="chip active" data-el-filter="All">All</button>
+          <button class="chip" data-el-filter="Electro" style="--el-color:#a78bfa"><span class="el-electro">●</span> Electro</button>
+          <button class="chip" data-el-filter="Ice"><span class="el-ice">●</span> Ice</button>
+          <button class="chip" data-el-filter="Fire"><span class="el-fire">●</span> Fire</button>
+          <button class="chip" data-el-filter="Aero"><span class="el-aero">●</span> Aero</button>
+          <button class="chip" data-el-filter="Fusion"><span class="el-fusion">●</span> Fusion</button>
+          <button class="chip" data-el-filter="Spectro"><span class="el-spectro">●</span> Spectro</button>
+          <button class="chip" data-el-filter="Havoc"><span class="el-havoc">●</span> Havoc</button>
+          <button class="chip" data-el-filter="Glacio"><span class="el-glacio">●</span> Glacio</button>
+
+          <div style="width:1px;height:20px;background:var(--glass-border);margin:0 0.5rem;"></div>
+
+          <span style="font-size:0.7rem;color:var(--text-dim);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-right:0.5rem;">Weapon</span>
+          <button class="chip active" data-weapon-filter="All">All</button>
+          <button class="chip" data-weapon-filter="Sword">Sword</button>
+          <button class="chip" data-weapon-filter="Broadblade">Broadblade</button>
+          <button class="chip" data-weapon-filter="Gauntlets">Gauntlets</button>
+          <button class="chip" data-weapon-filter="Pistols">Pistols</button>
+          <button class="chip" data-weapon-filter="Rectifier">Rectifier</button>
+
+          <div style="width:1px;height:20px;background:var(--glass-border);margin:0 0.5rem;"></div>
+
+          <span style="font-size:0.7rem;color:var(--text-dim);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-right:0.5rem;">Rarity</span>
+          <button class="chip active" data-rarity-filter="All">All</button>
+          <button class="chip" data-rarity-filter="5" style="color:#FFD700;">★★★★★</button>
+          <button class="chip" data-rarity-filter="4" style="color:#C0C0C0;">★★★★</button>
+        </div>
+        <p style="font-size:0.72rem;color:var(--text-dim);text-align:center;margin-top:0.75rem;">
+          Showing <span id="char-count" style="color:var(--cyan);font-weight:700;">12</span> of 12 Resonators
+        </p>
+      </div>
+
+      <!-- Character Grid -->
+      <div class="char-grid" data-reveal>
+
+        <!-- 5★ Characters -->
+        <div class="char-card" data-char data-el="Electro" data-weapon="Rectifier" data-rarity="5">
+          <div class="char-avatar" style="background:linear-gradient(135deg,rgba(167,139,250,0.3),rgba(167,139,250,0.05));">
+            <span style="color:rgba(167,139,250,0.6);font-family:'Orbitron',monospace;font-weight:900;">D</span>
+          </div>
+          <p class="char-name">Daniya</p>
+          <p class="char-name-cn">达妮娅</p>
+          <div class="char-meta"><span>Rectifier</span><span>·</span><span class="el-electro" style="font-weight:600;">Electro</span></div>
+          <p class="char-rarity" style="color:#FFD700;margin-top:0.3rem;">★★★★★</p>
+          <span style="position:absolute;top:0.6rem;right:0.6rem;font-size:0.6rem;font-weight:700;background:var(--cyan);color:#000;padding:0.1rem 0.4rem;border-radius:4px;">NEW</span>
+        </div>
+
+        <div class="char-card" data-char data-el="Ice" data-weapon="Sword" data-rarity="5">
+          <div class="char-avatar" style="background:linear-gradient(135deg,rgba(103,232,249,0.3),rgba(103,232,249,0.05));">
+            <span style="color:rgba(103,232,249,0.6);font-family:'Orbitron',monospace;font-weight:900;">Q</span>
+          </div>
+          <p class="char-name">Qinxiao</p>
+          <p class="char-name-cn">千咲</p>
+          <div class="char-meta"><span>Sword</span><span>·</span><span class="el-ice" style="font-weight:600;">Ice</span></div>
+          <p class="char-rarity" style="color:#FFD700;margin-top:0.3rem;">★★★★★</p>
+        </div>
+
+        <div class="char-card" data-char data-el="Fire" data-weapon="Pistols" data-rarity="4">
+          <div class="char-avatar" style="background:linear-gradient(135deg,rgba(248,113,113,0.3),rgba(248,113,113,0.05));">
+            <span style="color:rgba(248,113,113,0.6);font-family:'Orbitron',monospace;font-weight:900;">F</span>
+          </div>
+          <p class="char-name">Fuluoluo</p>
+          <p class="char-name-cn">弗洛洛</p>
+          <div class="char-meta"><span>Pistols</span><span>·</span><span class="el-fire" style="font-weight:600;">Fire</span></div>
+          <p class="char-rarity" style="color:#C0C0C0;margin-top:0.3rem;">★★★★</p>
+        </div>
+
+        <div class="char-card" data-char data-el="Ice" data-weapon="Broadblade" data-rarity="5">
+          <div class="char-avatar" style="background:linear-gradient(135deg,rgba(147,197,253,0.3),rgba(147,197,253,0.05));">
+            <span style="color:rgba(147,197,253,0.6);font-family:'Orbitron',monospace;font-weight:900;">F</span>
+          </div>
+          <p class="char-name">Feixue</p>
+          <p class="char-name-cn">绯雪</p>
+          <div class="char-meta"><span>Broadblade</span><span>·</span><span class="el-glacio" style="font-weight:600;">Glacio</span></div>
+          <p class="char-rarity" style="color:#FFD700;margin-top:0.3rem;">★★★★★</p>
+        </div>
+
+        <div class="char-card" data-char data-el="Aero" data-weapon="Sword" data-rarity="5">
+          <div class="char-avatar" style="background:linear-gradient(135deg,rgba(52,211,153,0.3),rgba(52,211,153,0.05));">
+            <span style="color:rgba(52,211,153,0.6);font-family:'Orbitron',monospace;font-weight:900;">X</span>
+          </div>
+          <p class="char-name">Cigleri</p>
+          <p class="char-name-cn">西格莉卡</p>
+          <div class="char-meta"><span>Sword</span><span>·</span><span class="el-aero" style="font-weight:600;">Aero</span></div>
+          <p class="char-rarity" style="color:#FFD700;margin-top:0.3rem;">★★★★★</p>
+        </div>
+
+        <div class="char-card" data-char data-el="Fusion" data-weapon="Gauntlets" data-rarity="5">
+          <div class="char-avatar" style="background:linear-gradient(135deg,rgba(251,191,36,0.3),rgba(251,191,36,0.05));">
+            <span style="color:rgba(251,191,36,0.6);font-family:'Orbitron',monospace;font-weight:900;">L</span>
+          </div>
+          <p class="char-name">Lu Hesh</p>
+          <p class="char-name-cn">陆·赫斯</p>
+          <div class="char-meta"><span>Gauntlets</span><span>·</span><span class="el-fusion" style="font-weight:600;">Fusion</span></div>
+          <p class="char-rarity" style="color:#FFD700;margin-top:0.3rem;">★★★★★</p>
+        </div>
+
+        <div class="char-card" data-char data-el="Spectro" data-weapon="Rectifier" data-rarity="4">
+          <div class="char-avatar" style="background:linear-gradient(135deg,rgba(251,146,60,0.3),rgba(251,146,60,0.05));">
+            <span style="color:rgba(251,146,60,0.6);font-family:'Orbitron',monospace;font-weight:900;">A</span>
+          </div>
+          <p class="char-name">Aimesi</p>
+          <p class="char-name-cn">爱弥斯</p>
+          <div class="char-meta"><span>Rectifier</span><span>·</span><span class="el-spectro" style="font-weight:600;">Spectro</span></div>
+          <p class="char-rarity" style="color:#C0C0C0;margin-top:0.3rem;">★★★★</p>
+        </div>
+
+        <div class="char-card" data-char data-el="Havoc" data-weapon="Pistols" data-rarity="5">
+          <div class="char-avatar" style="background:linear-gradient(135deg,rgba(192,132,252,0.3),rgba(192,132,252,0.05));">
+            <span style="color:rgba(192,132,252,0.6);font-family:'Orbitron',monospace;font-weight:900;">L</span>
+          </div>
+          <p class="char-name">Rinae</p>
+          <p class="char-name-cn">琳奈</p>
+          <div class="char-meta"><span>Pistols</span><span>·</span><span class="el-havoc" style="font-weight:600;">Havoc</span></div>
+          <p class="char-rarity" style="color:#FFD700;margin-top:0.3rem;">★★★★★</p>
+        </div>
+
+        <div class="char-card" data-char data-el="Glacio" data-weapon="Broadblade" data-rarity="4">
+          <div class="char-avatar" style="background:linear-gradient(135deg,rgba(147,197,253,0.3),rgba(147,197,253,0.05));">
+            <span style="color:rgba(147,197,253,0.6);font-family:'Orbitron',monospace;font-weight:900;">M</span>
+          </div>
+          <p class="char-name">Moming</p>
+          <p class="char-name-cn">莫宁</p>
+          <div class="char-meta"><span>Broadblade</span><span>·</span><span class="el-glacio" style="font-weight:600;">Glacio</span></div>
+          <p class="char-rarity" style="color:#C0C0C0;margin-top:0.3rem;">★★★★</p>
+        </div>
+
+        <div class="char-card" data-char data-el="Electro" data-weapon="Gauntlets" data-rarity="5">
+          <div class="char-avatar" style="background:linear-gradient(135deg,rgba(167,139,250,0.3),rgba(167,139,250,0.05));">
+            <span style="color:rgba(167,139,250,0.6);font-family:'Orbitron',monospace;font-weight:900;">C</span>
+          </div>
+          <p class="char-name">Chou Yuan</p>
+          <p class="char-name-cn">仇远</p>
+          <div class="char-meta"><span>Gauntlets</span><span>·</span><span class="el-electro" style="font-weight:600;">Electro</span></div>
+          <p class="char-rarity" style="color:#FFD700;margin-top:0.3rem;">★★★★★</p>
+        </div>
+
+        <div class="char-card" data-char data-el="Fusion" data-weapon="Sword" data-rarity="5">
+          <div class="char-avatar" style="background:linear-gradient(135deg,rgba(251,191,36,0.3),rgba(251,191,36,0.05));">
+            <span style="color:rgba(251,191,36,0.6);font-family:'Orbitron',monospace;font-weight:900;">J</span>
+          </div>
+          <p class="char-name">Gavelina</p>
+          <p class="char-name-cn">嘉贝莉娜</p>
+          <div class="char-meta"><span>Sword</span><span>·</span><span class="el-fusion" style="font-weight:600;">Fusion</span></div>
+          <p class="char-rarity" style="color:#FFD700;margin-top:0.3rem;">★★★★★</p>
+        </div>
+
+        <div class="char-card" data-char data-el="Aero" data-weapon="Rectifier" data-rarity="5">
+          <div class="char-avatar" style="background:linear-gradient(135deg,rgba(52,211,153,0.3),rgba(52,211,153,0.05));">
+            <span style="color:rgba(52,211,153,0.6);font-family:'Orbitron',monospace;font-weight:900;">Y</span>
+          </div>
+          <p class="char-name">Yunuo</p>
+          <p class="char-name-cn">尤诺</p>
+          <div class="char-meta"><span>Rectifier</span><span>·</span><span class="el-aero" style="font-weight:600;">Aero</span></div>
+          <p class="char-rarity" style="color:#FFD700;margin-top:0.3rem;">★★★★★</p>
+        </div>
+
+      </div>
+
+      <!-- Element Legend -->
+      <div class="glass" style="margin-top:3rem;padding:1.25rem;text-align:center;" data-reveal>
+        <p style="font-size:0.7rem;font-weight:700;color:var(--text-dim);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.75rem;">Element Colors</p>
+        <div style="display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;">
+          <span class="el-electro" style="font-size:0.8rem;">● Electro</span>
+          <span class="el-ice" style="font-size:0.8rem;">● Ice</span>
+          <span class="el-fire" style="font-size:0.8rem;">● Fire</span>
+          <span class="el-aero" style="font-size:0.8rem;">● Aero</span>
+          <span class="el-fusion" style="font-size:0.8rem;">● Fusion</span>
+          <span class="el-spectro" style="font-size:0.8rem;">● Spectro</span>
+          <span class="el-havoc" style="font-size:0.8rem;">● Havoc</span>
+          <span class="el-glacio" style="font-size:0.8rem;">● Glacio</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>An unofficial fan project. Not affiliated with <a href="#">Kuro Games</a>.</p>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
