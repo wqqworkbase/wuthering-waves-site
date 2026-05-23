@@ -57,18 +57,22 @@
     const slides = document.querySelectorAll('.hero-slide');
     if (!slides.length) return;
 
-    // Placeholder gradient slides (real images replace these)
+    // Real image slides from Pexels (anime/cyberpunk aesthetic)
     const WALLPAPERS = [
-      { gradient: 'linear-gradient(135deg, #0c1929 0%, #1a0a2e 50%, #0d1b3e 100%)' },
-      { gradient: 'linear-gradient(135deg, #0a1628 0%, #1e0a2e 50%, #0a1628 100%)' },
-      { gradient: 'linear-gradient(135deg, #1a0a0a 0%, #2e0a1e 50%, #1a0a0a 100%)' },
-      { gradient: 'linear-gradient(135deg, #0a1a0a 0%, #0a2e1e 50%, #0a1a0a 100%)' },
-      { gradient: 'linear-gradient(135deg, #1a1a0a 0%, #2e2e0a 50%, #1a1a0a 100%)' },
+      { src: 'https://images.pexels.com/photos/1323550/pexels-photo-1323550.jpeg?auto=compress&cs=tinysrgb&w=1920' },
+      { src: 'https://images.pexels.com/photos/1629789/pexels-photo-1629789.jpeg?auto=compress&cs=tinysrgb&w=1920' },
+      { src: 'https://images.pexels.com/photos/1166209/pexels-photo-1166209.jpeg?auto=compress&cs=tinysrgb&w=1920' },
+      { src: 'https://images.pexels.com/photos/2387125/pexels-photo-2387125.jpeg?auto=compress&cs=tinysrgb&w=1920' },
+      { src: 'https://images.pexels.com/photos/1534590/pexels-photo-1534590.jpeg?auto=compress&cs=tinysrgb&w=1920' },
     ];
 
     slides.forEach((slide, i) => {
       const wp = WALLPAPERS[i % WALLPAPERS.length];
-      if (wp) slide.style.background = wp.gradient;
+      if (wp) {
+        slide.style.backgroundImage = `url(${wp.src})`;
+        slide.style.backgroundSize = 'cover';
+        slide.style.backgroundPosition = 'center';
+      }
     });
 
     let current = 0;
